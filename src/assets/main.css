@@ -1065,3 +1065,12 @@ body {
   right: 1.5rem;
   z-index: 10;
 }
+
+.chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #aaa;
+  font-size: 0.9rem;
+}

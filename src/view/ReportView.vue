@@ -22,13 +22,15 @@
       <div class="chart-block">
         <div class="chart-title">Nutrition coverage radar</div>
         <div style="position:relative;width:100%;height:220px">
-          <Radar v-if="radarData" :data="radarData" :options="chartOptions" />
+          <Radar v-if="radarData && filteredMeals.length > 0" :data="radarData" :options="chartOptions" />
+          <div v-else class="chart-empty">No data for this period</div>
         </div>
       </div>
       <div class="chart-block">
         <div class="chart-title">Meal type distribution</div>
         <div style="position:relative;width:100%;height:180px">
-          <Doughnut v-if="donutData" :data="donutData" :options="chartOptions" />
+          <Doughnut v-if="donutData && filteredMeals.length > 0" :data="donutData" :options="chartOptions" />
+          <div v-else class="chart-empty">No data for this period</div>
         </div>
       </div>
     </div>
