@@ -15,8 +15,11 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 
 CORS(app, 
      supports_credentials=True,
-     origins=['http://localhost:5000', 'http://localhost:5173', 'https://piecebypeas.onrender.com', 'https://Elaine-Zeng2025.github.io'])
-
+     origins=[
+       'http://localhost:5173',
+       'https://piece-by-peas-vue-ofou.vercel.app',
+       'https://piece-by-peas-3epsphq0g-elaine-zeng2025s-projects.vercel.app'
+     ])
 init_db()
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
