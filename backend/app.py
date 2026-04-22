@@ -4,21 +4,16 @@ from database import init_db
 from routes.auth import auth_bp
 from routes.meals import meals_bp
 import os
-import re
 
 app = Flask(__name__, static_folder='..', static_url_path='')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 
-IS_PROD = os.environ.get('RAILWAY_ENVIRONMENT') == 'production'
-app.config['SESSION_COOKIE_SECURE'] = IS_PROD
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 
-CORS(app, 
-     supports_credentials=True,
-     origins=re.compile(r'https://.*\.vercel\.app'),
-     allow_headers=['Content-Type'],
-     methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
+CORS(app, supports_credentials=True, origins='*')
+
 init_db()
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -37,4 +32,4 @@ def serve_static(path):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(debug=not IS_PROD, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)
