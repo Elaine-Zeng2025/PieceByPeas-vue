@@ -528,7 +528,7 @@ body {
 }
 
 .tag-option:hover { border-color: var(--green-mid); }
-.tag-option.selected { background: var(--orange); border-color: var(--orange); color: var(--white); }
+.tag-option.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
 
 /* Buttons */
 .form-actions {
