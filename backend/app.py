@@ -4,6 +4,7 @@ from database import init_db
 from routes.auth import auth_bp
 from routes.meals import meals_bp
 import os
+import re
 
 app = Flask(__name__, static_folder='..', static_url_path='')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
@@ -15,12 +16,9 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 
 CORS(app, 
      supports_credentials=True,
-     origins=[
-       'http://localhost:5173',
-       'https://piece-by-peas-vue-ofou.vercel.app',
-       'https://piece-by-peas-3epsphq0g-elaine-zeng2025s-projects.vercel.app',
-       'https://piece-by-peas-8pn9cvz5d-elaine-zeng2025s-projects.vercel.app'
-     ])
+     origins=re.compile(r'https://.*\.vercel\.app'),
+     allow_headers=['Content-Type'],
+     methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
 init_db()
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
