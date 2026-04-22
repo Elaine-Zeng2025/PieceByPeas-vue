@@ -18,7 +18,8 @@ CORS(app,
      origins=[
        'http://localhost:5173',
        'https://piece-by-peas-vue-ofou.vercel.app',
-       'https://piece-by-peas-3epsphq0g-elaine-zeng2025s-projects.vercel.app'
+       'https://piece-by-peas-3epsphq0g-elaine-zeng2025s-projects.vercel.app',
+       'https://piece-by-peas-8pn9cvz5d-elaine-zeng2025s-projects.vercel.app'
      ])
 init_db()
 
